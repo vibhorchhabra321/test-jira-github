@@ -26,3 +26,9 @@ jobs:
       uses: atlassian/gajira-find-issue-key@master
       with:
         from: commits
+        
+    - name: Test
+      run: |
+        echo ${{jobs.outputs.Issue}} 
+  
+  
