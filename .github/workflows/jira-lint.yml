@@ -29,6 +29,6 @@ jobs:
         
     - name: Test
       run: |
-        echo ${{Issue}} 
+        echo ${{Jobs.Commit_Checker.Outputs}} 
   
   
