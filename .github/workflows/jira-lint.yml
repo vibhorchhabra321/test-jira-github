@@ -30,8 +30,12 @@ jobs:
     
     - name: Echo JIRA Issue
       if: ${{steps.jira_issue.outputs.Issue == ''}}
-      run: |
-        echo "JIRA Issue Not Found. Please use a valid JIRA Issue" && exit 1
+      uses: actions/github-script@v3
+      with:
+        script: |
+          core.setFailed('JIRA Issue Not Found. Please use a valid JIRA Issue')
+  #    run: |
+  #      echo "JIRA Issue Not Found. Please use a valid JIRA Issue" && exit 1
 
   
   
