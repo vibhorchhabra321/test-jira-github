@@ -30,7 +30,7 @@ jobs:
     
     - name: Echo JIRA Issue
       run: |
-        echo "${{steps.jira_issue.outputs.issue}}"
+        echo "${{steps.jira_issue.outputs.Issue}}"
 
   JIRA_Validator:
     runs-on: ubuntu-latest
