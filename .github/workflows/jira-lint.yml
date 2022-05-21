@@ -35,6 +35,6 @@ jobs:
     - name: Echo JIRA ID
     
       run: |
-        echo ${{needs.jobs.Commit_Checker.outputs}} 
+        echo ${{needs.jobs.Commit_Checker.outputs.Issue}} 
   
   
