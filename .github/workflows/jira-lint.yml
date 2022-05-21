@@ -29,9 +29,11 @@ jobs:
 
   JIRA_Validator:
     runs-on: ubuntu-latest
+    needs: Commit_Checker
     
     steps:
     - name: Echo JIRA ID
+    
       run: |
         echo ${{needs.jobs.Commit_Checker.outputs}} 
   
