@@ -33,6 +33,6 @@ jobs:
     steps:
     - name: Echo JIRA ID
       run: |
-        echo ${{jobs.Commit_Checker.outputs}} 
+        echo ${{needs.jobs.Commit_Checker.outputs}} 
   
   
