@@ -29,6 +29,6 @@ jobs:
         
     - name: Test
       run: |
-        echo ${{jobs.outputs.Issue}} 
+        echo ${{Issue}} 
   
   
