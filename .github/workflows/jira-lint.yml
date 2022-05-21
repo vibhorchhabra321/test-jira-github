@@ -34,8 +34,6 @@ jobs:
       with:
         script: |
           core.setFailed('JIRA Issue Not Found. Please use a valid JIRA Issue')
-  #    run: |
-  #      echo "JIRA Issue Not Found. Please use a valid JIRA Issue" && exit 1
 
   
   
