@@ -24,7 +24,7 @@ jobs:
 
     - name: Find in commit messages
       id: jira_issue
-      uses: vibhorchhabra321/jira-find-issue-key@master
+      uses: atlassian/gajira-find-issue-key@master
       with:
         from: commits
     
@@ -33,14 +33,5 @@ jobs:
       run: |
         echo " JIRA Issue Not Fount" && exit 1
 
-  JIRA_Validator:
-    runs-on: ubuntu-latest
-    needs: Commit_Checker
-    
-    steps:
-    - name: Echo JIRA IDs
-    
-      run: |
-        echo "${{needs.jobs.Commit_Checker.outputs.Issue}}" 
   
   
