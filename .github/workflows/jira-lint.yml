@@ -26,8 +26,12 @@ jobs:
       uses: atlassian/gajira-find-issue-key@master
       with:
         from: commits
-        
-    - name: Test
+
+  JIRA_Validator:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Echo JIRA ID
       run: |
         echo ${{jobs.Commit_Checker.outputs}} 
   
