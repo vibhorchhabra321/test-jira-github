@@ -31,7 +31,7 @@ jobs:
     - name: Echo JIRA Issue
       if: ${{steps.jira_issue.outputs.Issue == ''}}
       run: |
-        echo "${{steps.jira_issue.outputs.Issue}} JIRA Issue Not Fount" && exit 1
+        echo "JIRA Issue Not Found. Please use a valid JIRA Issue" && exit 1
 
   
   
