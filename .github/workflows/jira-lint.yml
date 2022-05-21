@@ -24,13 +24,13 @@ jobs:
 
     - name: Find in commit messages
       id: jira_issue
-      uses: atlassian/gajira-find-issue-key@master
+      uses: vibhorchhabra321/jira-find-issue-key@master
       with:
         from: commits
     
     - name: Echo JIRA Issue
       run: |
-        echo "${{steps.jira_issue.outputs.Issue}}"
+        echo "${{steps.jira_issue.outputs.issue}}"
 
   JIRA_Validator:
     runs-on: ubuntu-latest
