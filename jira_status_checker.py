@@ -21,8 +21,10 @@ print('{}: {}:{}'.format(singleIssue.key,
 						singleIssue.fields.reporter.displayName))
 print(singleIssue)
 
-def jira_status_checker:
+def jira_status_checker():
   if singleIssue.status in ["To Do", "Done"]:
     return false
   elif singleIssue.status in ["In Progress"]:
     return true
+
+jira_status_checker()
