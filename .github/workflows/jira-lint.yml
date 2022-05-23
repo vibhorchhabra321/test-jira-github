@@ -35,6 +35,9 @@ jobs:
         script: |
           core.setFailed('JIRA Issue Not Found. Please use a valid JIRA Issue')
           
+    - name: checkout repo content
+      uses: actions/checkout@v2 # checkout the repository content to github runner.  
+      
     - name: setup python
       uses: actions/setup-python@v2
       with:
@@ -44,7 +47,7 @@ jobs:
           pip install jira
     - name: execute py script # run file
       run: |
-          python jira_status_checker.py $${{steps.jira_issue.outputs.Issue}}
+          python jira_status_checker.py ${{steps.jira_issue.outputs.Issue}}
       env:
         JIRA_BASE_URL: "https://uneritx.atlassian.net"
         JIRA_USER_LOCAL: ${{ secrets.JIRA_USER }}
