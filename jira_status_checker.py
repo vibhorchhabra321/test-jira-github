@@ -22,6 +22,6 @@ print('{}: {}:{}'.format(singleIssue.key,
 print(singleIssue)
 
 if singleIssue.status in ["To Do", "Done"]:
-    return false
+  return false
 elif singleIssue.status in ["In Progress"]:
-    return true
+  return true
