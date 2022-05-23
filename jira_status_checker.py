@@ -20,8 +20,8 @@ print('{}: {}:{}'.format(singleIssue.key,
                         singleIssue.fields.status,
 						singleIssue.fields.reporter.displayName))
 print(singleIssue)
-if singleIssue exist return truedi
+
 if singleIssue.status in ["To Do", "Done"]:
-    return False
+    return false
 elif singleIssue.status in ["In Progress"]:
     return true
