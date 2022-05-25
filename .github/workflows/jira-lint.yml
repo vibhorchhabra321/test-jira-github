@@ -51,7 +51,7 @@ jobs:
     - name: Check JIRA Status
       run: python jira_status_checker.py ${{steps.jira_issue.outputs.Issue}}
       env:
-        JIRA_BASE_URL: "https://uneritx.atlassian.net"
+        JIRA_CLOUD_URL: "https://uneritx.atlassian.net"
         JIRA_USER_LOCAL: ${{ secrets.JIRA_USER }}
         JIRA_TOKEN_LOCAL: ${{ secrets.JIRA_TOKEN }}
     
