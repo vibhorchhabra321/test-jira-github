@@ -52,6 +52,7 @@ jobs:
       id: jira_status_checker
       run: |
         output=$(python jira_status_checker.py ${{steps.jira_issue.outputs.Issue}})
+        echo "${output}}"
         echo "::set-output name=jira_status::$output"
       env:
         JIRA_CLOUD_URL: "https://uneritx.atlassian.net"
