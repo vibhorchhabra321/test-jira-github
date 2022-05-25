@@ -17,7 +17,8 @@ print('{}: {}:{}'.format(singleIssue.key, singleIssue.fields.summary, singleIssu
 print(singleIssue)
 
 if singleIssue.status in ["To Do", "Done"]:
-  print('JIRA is in {} status therefore, cannot perform actions on it'.format(singleIssue.key)) && sys.exit(0)
+  print('JIRA is in {} status therefore, cannot perform actions on it'.format(singleIssue.key))
+  sys.exit(0)
 elif singleIssue.status in ["In Progress"]:
   print("JIRA is in In-Progress Status")
 
