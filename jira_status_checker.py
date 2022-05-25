@@ -16,7 +16,7 @@ singleIssue = jira.issue(jira_id)
 #print('{}: {}:{}'.format(singleIssue.key, singleIssue.fields.summary, singleIssue.fields.status, singleIssue.fields.reporter.displayName))
 jira_status = str(singleIssue.fields.status)
 #print(singleIssue)
-print(jira_status)
+#print(jira_status)
 
 if jira_status in ["To Do", "Done"]:
   print("invalid")
