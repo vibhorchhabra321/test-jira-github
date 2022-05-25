@@ -18,11 +18,10 @@ jira_status = str(singleIssue.fields.status)
 #print(singleIssue)
 print(jira_status)
 
-#if jira_status in ["To Do", "Done"]:
-#  print('JIRA is in {} status therefore, cannot perform actions on it'.format(singleIssue.key))
-#  sys.exit(0)
-#elif jira_status in ["In Progress"]:
-#  print("JIRA is in In-Progress Status")
-#else:
-#  print("Didn't find the JIRA status")
+if jira_status in ["To Do", "Done"]:
+  print("invalid")
+elif jira_status in ["In Progress"]:
+  print("valid")
+else:
+  print("Didn't find the JIRA status")
 
