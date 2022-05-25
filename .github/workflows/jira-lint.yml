@@ -62,7 +62,7 @@ jobs:
       uses: actions/github-script@v3
       with:
         script: |
-          core.setFailed('JIRA Issue Not Found. Please use a valid JIRA Issue')
+          core.setFailed('JIRA Issue is not in In-Progress Status. Either the status is To-Do or Done.Please check')
     
     
 
