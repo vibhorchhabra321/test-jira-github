@@ -23,8 +23,7 @@ print(singleIssue)
 
 def jira_status_checker():
   if singleIssue.status in ["To Do", "Done"]:
-    return false
+    sys.exit(0)
   elif singleIssue.status in ["In Progress"]:
-    return true
+    print("JIRA is in In-Progress Status")
 
-jira_status_checker()
