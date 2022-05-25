@@ -42,10 +42,14 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.8 #install the python needed
-        run: |
-          python -m pip install --upgrade pip
-          pip install jira
-          python jira_status_checker.py ${{steps.jira_issue.outputs.Issue}}
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install jira
+    
+    - name: Check JIRA Status
+      run: python jira_status_checker.py ${{steps.jira_issue.outputs.Issue}}
       env:
         JIRA_BASE_URL: "https://uneritx.atlassian.net"
         JIRA_USER_LOCAL: ${{ secrets.JIRA_USER }}
