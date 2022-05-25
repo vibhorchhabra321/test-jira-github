@@ -14,13 +14,14 @@ jira = JIRA(options = {'server':jira_base_url, 'verify':False}, basic_auth = (us
 
 singleIssue = jira.issue(jira_id)
 print('{}: {}:{}'.format(singleIssue.key, singleIssue.fields.summary, singleIssue.fields.status, singleIssue.fields.reporter.displayName))
+jira_status = str(singleIssue.fields.status)
 print(singleIssue)
-print(singleIssue.fields.status)
+print(jira_status)
 
-if singleIssue.fields.status in ["To Do", "Done"]:
+if jira_status in ["To Do", "Done"]:
   print('JIRA is in {} status therefore, cannot perform actions on it'.format(singleIssue.key))
   sys.exit(0)
-elif singleIssue.fields.status in ["In Progress"]:
+elif jira_status in ["In Progress"]:
   print("JIRA is in In-Progress Status")
 else:
   print("Didn't find the JIRA status")
