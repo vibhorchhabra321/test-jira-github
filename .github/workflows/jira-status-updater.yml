@@ -2,7 +2,9 @@ name: Master Workflow - Build and deploy to production
 on:
   pull_request:
   branches:
-  - master
+  - main
+  - int
+  - qa
   
 jobs:
   Commit_Checker:
