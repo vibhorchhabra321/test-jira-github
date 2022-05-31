@@ -1,0 +1,73 @@
+name: Master Workflow - Build and deploy to production
+on:
+  pull_request:
+  branches:
+  - master
+  
+jobs:
+  Commit_Checker:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Check Commit Type
+      uses: gsactions/commit-message-checker@v1
+      with:
+        pattern: 'UTX-[0-9]+'
+        flags: 'gm'
+        error: 'Your first line has to contain a commit type like "UTX-1".'
+    
+    - name: Login
+      uses: atlassian/gajira-login@master
+      env:
+        JIRA_BASE_URL: "https://uneritx.atlassian.net"
+        JIRA_USER_EMAIL: ${{ secrets.JIRA_USER }}
+        JIRA_API_TOKEN: ${{ secrets.JIRA_TOKEN }}
+
+    - name: Find in commit messages
+      id: jira_issue
+      uses: atlassian/gajira-find-issue-key@master
+      with:
+        from: commits
+    
+    - name: Echo JIRA Issue
+      if: ${{steps.jira_issue.outputs.Issue == ''}}
+      uses: actions/github-script@v3
+      with:
+        script: |
+          core.setFailed('JIRA Issue Not Found. Please use a valid JIRA Issue')
+          
+    - name: checkout repo content
+      uses: actions/checkout@v2 # checkout the repository content to github runner.  
+      
+    - name: setup python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8 #install the python needed
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install jira
+    
+    - name: Check JIRA Status
+      id: jira_status_checker
+      run: |
+        output=$(python jira_status_checker.py ${{steps.jira_issue.outputs.Issue}})
+        echo "${output}}"
+        echo "::set-output name=jira_status::$output"
+      env:
+        JIRA_CLOUD_URL: "https://uneritx.atlassian.net"
+        JIRA_USER_LOCAL: ${{ secrets.JIRA_USER }}
+        JIRA_TOKEN_LOCAL: ${{ secrets.JIRA_TOKEN }}
+    - name: Validate JIRA Status
+      if: ${{steps.jira_status_checker.outputs.jira_status == 'invalid'}}
+      uses: actions/github-script@v3
+      with:
+        script: |
+          core.setFailed('JIRA Issue is not in In-Progress Status. Either the status is To-Do or Done.Please check')
+          
+    - name: Comment on issue
+      uses: atlassian/gajira-comment@master
+      with:
+        issue: ${{steps.jira_issue.outputs.Issue}}
+        comment: ${{ github.event.pusher.name }} pushed to repository: ${{ github.event.repository.full_name }}
