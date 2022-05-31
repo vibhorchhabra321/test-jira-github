@@ -67,4 +67,4 @@ jobs:
       uses: atlassian/gajira-comment@master
       with:
         issue: ${{steps.jira_issue.outputs.Issue}}
-        comment: ${{ github.event.pusher.name }} pushed to repository: ${{ github.event.repository.full_name }}
+        comment: ${{ github.event.pusher.name }} pushed to repository - ${{ github.event.repository.full_name }}
