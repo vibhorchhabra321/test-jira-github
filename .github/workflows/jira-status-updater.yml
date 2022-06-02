@@ -10,4 +10,4 @@ jobs:
       uses: atlassian/gajira-comment@master
       with:
         issue: UTX-1
-        comment: ${{ github.event.pusher.name }} pushed to repository: ${{ github.event.repository.full_name }}
+        comment: ${{ github.event.pusher.name }} pushed to repository - ${{ github.event.repository.full_name }}
