@@ -21,4 +21,4 @@ jobs:
       uses: atlassian/gajira-comment@master
       with:
         issue: UTX-1
-        comment: ${{ github.event.pusher.name }} Pull Request Opened for - ${{ github.event.repository.full_name }} {{ github.head_ref }} branch at ${{ steps.date.outputs.date }}  
+        comment: ${{ github.event.pusher.name }} Pull Request Opened for - ${{ github.event.repository.full_name }} ${{ github.head_ref }} branch at ${{ steps.date.outputs.date }}  
