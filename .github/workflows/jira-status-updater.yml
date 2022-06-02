@@ -1,8 +1,8 @@
-name: Master Workflow - Build and deploy to production
+name: Master Workflow - JIRA Update
 on: [pull_request]
   
 jobs:
-  Commit_Checker:
+  JIRA-Status-Update:
     runs-on: ubuntu-latest
     
     steps: 
