@@ -1,8 +1,5 @@
 name: Master Workflow - Build and deploy to production
-on:
-  pull_request:
-    types:
-      - opened
+on: [pull_request]
   
 jobs:
   Commit_Checker:
