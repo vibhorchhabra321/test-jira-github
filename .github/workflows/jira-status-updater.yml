@@ -5,7 +5,14 @@ jobs:
   Commit_Checker:
     runs-on: ubuntu-latest
     
-    steps:       
+    steps: 
+    - name: Login
+      uses: atlassian/gajira-login@master
+      env:
+        JIRA_BASE_URL: "https://uneritx.atlassian.net"
+        JIRA_USER_EMAIL: ${{ secrets.JIRA_USER }}
+        JIRA_API_TOKEN: ${{ secrets.JIRA_TOKEN }}
+      
     - name: Comment on issue
       uses: atlassian/gajira-comment@master
       with:
