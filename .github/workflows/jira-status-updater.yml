@@ -1,5 +1,10 @@
 name: Master Workflow - Build and deploy to production
-on: [pull_request]
+on:
+  pull_request:
+    types:
+      - opened
+    branches:    
+      - 'releases/**'
   
 jobs:
   Commit_Checker:
@@ -12,9 +17,13 @@ jobs:
         JIRA_BASE_URL: "https://uneritx.atlassian.net"
         JIRA_USER_EMAIL: ${{ secrets.JIRA_USER }}
         JIRA_API_TOKEN: ${{ secrets.JIRA_TOKEN }}
+        
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       
     - name: Comment on issue
       uses: atlassian/gajira-comment@master
       with:
         issue: UTX-1
-        comment: ${{ github.event.pusher.name }} pushed to repository - ${{ github.event.repository.full_name }}
+        comment: ${{ github.event.pusher.name }} Pull Request Opened for - ${{ github.event.repository.full_name }} {{ github.head_ref }} branch at ${{ steps.date.outputs.date }}  
