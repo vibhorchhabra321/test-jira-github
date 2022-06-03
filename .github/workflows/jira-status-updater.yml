@@ -4,8 +4,7 @@ on: [pull_request]
 jobs:
   JIRA-Status-Update:
     runs-on: ubuntu-latest
-    steps:
-          
+    steps:    
       - name: Parse Jira Keys from Commit
         id: jira_keys
         if: always()
