@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: PR Title Checker
-        uses: vchhabra321/test-jira-github@main
+        uses: vibhorchhabra321/test-jira-github@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           jira-prefix: "UTX"
