@@ -17,6 +17,8 @@ jobs:
         uses: HighwayThree/jira-extract-issue-keys@master
         with:
           is-pull-request: ${{ github.event_name == 'pull_request' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
       - name: Login
         uses: atlassian/gajira-login@master
