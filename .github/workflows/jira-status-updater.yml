@@ -5,7 +5,12 @@ jobs:
   Commit_Checker:
     runs-on: ubuntu-latest
     
-    steps:       
+    steps: 
+    - name: Check JIRA Issue in PR Title & Description
+      uses: fgiuliani/jira-issue-key-checker@master
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        jira-prefix: 'UTX'
     - name: Comment on issue
       uses: atlassian/gajira-comment@master
       with:
