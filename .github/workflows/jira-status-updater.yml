@@ -5,17 +5,20 @@ jobs:
   JIRA-Status-Update:
     runs-on: ubuntu-latest
     steps:
-      - name: PR Title Checker
-        uses: vibhorchhabra321/test-jira-github@main
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          jira-prefix: "UTX"
-    
       - name: Check JIRA Issue in PR Title & Description
-        uses: vibhorchhabra321/test-jira-github@main
+        uses: fgiuliani/jira-issue-key-checker@master
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          jira-prefix: "UTX"
+          jira-prefix: 'UTX'
+      - name: Parse Jira Keys from Commit
+        id: jira_keys
+        if: always()
+        uses: HighwayThree/jira-extract-issue-keys@master
+        with:
+          is-pull-request: ${{ github.event_name == 'pull_request' }}
+          parse-all-commits: ${{ github.event_name == 'push' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Login
         uses: atlassian/gajira-login@master
         env:
