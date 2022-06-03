@@ -18,7 +18,7 @@ jobs:
       run: echo "${{ steps.regex-match.outputs.match }}"
         
     - name: Validate JIRA Issue
-      if: ${{steps.regex-match.outputs.match != ''}}
+      if: ${{ steps.regex-match.outputs.match == '' }}
       uses: actions/github-script@v3
       with:
         script: |
