@@ -20,7 +20,7 @@ jobs:
       id: regex-match
       with:
         text: ${{ github.event.pull_request.title }}
-        regex: 'UTX'
+        regex: 'UTX-[0-9]+'
         flags: gm
     - name: Login
       uses: atlassian/gajira-login@master
