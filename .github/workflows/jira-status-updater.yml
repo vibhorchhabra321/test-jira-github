@@ -1,8 +1,8 @@
-name: Master Workflow - Build and deploy to production
+name: PR JIRA Validator
 on: [pull_request]
   
 jobs:
-  Commit_Checker:
+  PR_JIRA_Issue_Validation:
     runs-on: ubuntu-latest
     
     steps: 
@@ -15,7 +15,7 @@ jobs:
         flags: gm
 
     - name: Validate JIRA Issue
-      if: ${{steps.regex-match.outputs.match == ''}}
+      if: ${{steps.regex-match.outputs.match != ''}}
       uses: actions/github-script@v3
       with:
         script: |
