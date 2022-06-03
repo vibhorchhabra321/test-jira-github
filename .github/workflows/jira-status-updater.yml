@@ -12,7 +12,7 @@ jobs:
           jira-prefix: "UTX"
     
       - name: Check JIRA Issue in PR Title & Description
-        uses: vchhabra0321/test-jira-github@main
+        uses: vibhorchhabra321/test-jira-github@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           jira-prefix: "UTX"
