@@ -15,6 +15,13 @@ jobs:
         parse-all-commits: ${{ github.event_name == 'push' }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Regex
+      uses: actions-ecosystem/action-regex-match@v2
+      id: regex-match
+      with:
+        text: ${{ github.event.pull_request.title }}
+        regex: 'UTX'
+        flags: gm
     - name: Login
       uses: atlassian/gajira-login@master
       env:
@@ -29,5 +36,5 @@ jobs:
     - name: Comment on issue
       uses: atlassian/gajira-comment@master
       with:
-        issue: "${{ steps.jira_keys.outputs.jira-keys }}"
+        issue: ${{ steps.regex-match.outputs.match }}
         comment: ${{ github.event.pusher.name }} pushed to repository - ${{ github.event.repository.full_name }}
