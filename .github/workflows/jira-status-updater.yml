@@ -6,13 +6,17 @@ jobs:
     runs-on: ubuntu-latest
     
     steps: 
-    - name: Check JIRA Issue in PR Title & Description
-      uses: fgiuliani/jira-issue-key-checker@master
+    - name: Parse Jira Keys from Commit
+      id: jira_keys
+      if: always()
+      uses: HighwayThree/jira-extract-issue-keys@master
       with:
+        is-pull-request: ${{ github.event_name == 'pull_request' }}
+        parse-all-commits: ${{ github.event_name == 'push' }}
+      env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        jira-prefix: 'UTX'
     - name: Comment on issue
       uses: atlassian/gajira-comment@master
       with:
-        issue: UTX-1
+        issue: "${{ steps.jira_keys.outputs.jira-keys }}"
         comment: ${{ github.event.pusher.name }} pushed to repository - ${{ github.event.repository.full_name }}
