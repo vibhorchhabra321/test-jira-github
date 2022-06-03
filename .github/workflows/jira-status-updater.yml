@@ -6,15 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     
     steps: 
-    - name: Parse Jira Keys from Commit
-      id: jira_keys
-      if: always()
-      uses: HighwayThree/jira-extract-issue-keys@master
-      with:
-        is-pull-request: ${{ github.event_name == 'pull_request' }}
-        parse-all-commits: ${{ github.event_name == 'push' }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Regex
       uses: actions-ecosystem/action-regex-match@v2
       id: regex-match
@@ -22,6 +13,14 @@ jobs:
         text: ${{ github.event.pull_request.title }}
         regex: 'UTX-[0-9]+'
         flags: gm
+
+    - name: Validate JIRA Issue
+      if: ${{steps.regex-match.outputs.match == ''}}
+      uses: actions/github-script@v3
+      with:
+        script: |
+          core.setFailed('JIRA Issue Not Found. Please use a valid JIRA Issue in PR Title')
+        
     - name: Login
       uses: atlassian/gajira-login@master
       env:
