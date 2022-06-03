@@ -1,13 +1,42 @@
-name: Master Workflow - Build and deploy to production
+name: PR JIRA Validator
 on: [pull_request]
   
 jobs:
-  Commit_Checker:
+  PR_JIRA_Issue_Validation:
     runs-on: ubuntu-latest
     
-    steps:       
+    steps: 
+    - name: Regex
+      uses: actions-ecosystem/action-regex-match@v2
+      id: regex-match
+      with:
+        text: ${{ github.event.pull_request.title }}
+        regex: 'UTX-[0-9]+'
+        flags: gm
+        
+    - name: Echo JIRA
+      run: echo "${{ steps.regex-match.outputs.match }}"
+        
+    - name: Validate JIRA Issue
+      if: ${{ steps.regex-match.outputs.match == '' }}
+      uses: actions/github-script@v3
+      with:
+        script: |
+          core.setFailed('JIRA Issue Not Found. Please use a valid JIRA Issue in PR Title')
+        
+    - name: Login
+      uses: atlassian/gajira-login@master
+      env:
+        JIRA_BASE_URL: "https://uneritx.atlassian.net"
+        JIRA_USER_EMAIL: ${{ secrets.JIRA_USER }}
+        JIRA_API_TOKEN: ${{ secrets.JIRA_TOKEN }}
+        
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H:%M:%S')"
+      
     - name: Comment on issue
       uses: atlassian/gajira-comment@master
       with:
-        issue: UTX-1
-        comment: ${{ github.event.pusher.name }} pushed to repository: ${{ github.event.repository.full_name }}
+        issue: ${{ steps.regex-match.outputs.match }}
+        comment: ${{ github.event.pusher.name }} pushed to repository - ${{ github.event.repository.full_name }}
