@@ -19,7 +19,7 @@ jira_status = str(singleIssue.fields.status)
 #print(jira_status)
 
 if jira_status not in ["To Do", "Done"]:
-  sys.exit(1)
+  sys.exit(0)
 elif jira_status in ["In Progress"]:
   print("valid")
 else:
