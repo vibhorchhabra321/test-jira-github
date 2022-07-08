@@ -68,7 +68,7 @@ jobs:
     - name: Find Jira user
       id: jira_user
       run: |
-        output=$(python jira_user.py)
+        output=$(python jira-users.py)
         echo "${output}}"
         echo "::set-output name=jira_user::$output"
       env:
