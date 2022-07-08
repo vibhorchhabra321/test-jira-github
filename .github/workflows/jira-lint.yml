@@ -80,7 +80,7 @@ jobs:
       uses: atlassian/gajira-comment@master
       with:
         issue: UTX-1
-        comment: "@Vibhor"
+        comment: "hi [~Vibhor]"
     
 
   
