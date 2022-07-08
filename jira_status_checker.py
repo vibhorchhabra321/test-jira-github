@@ -23,7 +23,7 @@ for user in jira.group_members("administrators"):
     print(info)
 #
 if jira_status not in ["To Do", "Done"]:
-  sys.exit(0)
+  print("invalid")
 else:
-  sys.exit(1)
+  print("valid")
 
