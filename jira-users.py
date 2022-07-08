@@ -1,8 +1,8 @@
 #from operator import truediv
-#from jira import JIRA
-#import os
-#import warnings
-#import sys
+from jira import JIRA
+import os
+import warnings
+import sys
 
 # This code sample uses the 'requests' library:
 # http://docs.python-requests.org
