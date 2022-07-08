@@ -80,7 +80,7 @@ jobs:
       uses: atlassian/gajira-comment@master
       with:
         issue: UTX-1
-        comment: "hi [~accountid:{60c5e426b1f93b0069d04c04}]"
+        comment: "hi [~accountid:{60c5e426b1f93b0069d04c04}] "
     
 
   
