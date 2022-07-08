@@ -18,7 +18,7 @@ jira_status = str(singleIssue.fields.status)
 #print(singleIssue)
 #print(jira_status)
 
-for user in jira.group_members("jira-administrators"):        
+for user in jira.group_members("administrators"):        
     info = jira.user(user)        
     print(info.name, info.emailAddress)
 
