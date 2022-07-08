@@ -12,6 +12,9 @@ apikey = os.environ.get("JIRA_TOKEN_LOCAL")
 
 jira = JIRA(options = {'server':jira_base_url, 'verify':False}, basic_auth = (username, apikey))
 
+users = jira.search_users('""') 
+print(users)
+
 for user in jira.group_members("administrators"):        
     info = jira.user(user)        
     print(info)
