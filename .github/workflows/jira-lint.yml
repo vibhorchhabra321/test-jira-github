@@ -75,6 +75,12 @@ jobs:
         JIRA_CLOUD_URL: "https://uneritx.atlassian.net"
         JIRA_USER_LOCAL: ${{ secrets.JIRA_USER }}
         JIRA_TOKEN_LOCAL: ${{ secrets.JIRA_TOKEN }}
+        
+    - name: Comment on issue
+      uses: atlassian/gajira-comment@master
+      with:
+        issue: UTX-1
+        comment: "@Vibhor"
     
 
   
