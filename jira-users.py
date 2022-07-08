@@ -18,7 +18,7 @@ apikey = os.environ.get("JIRA_TOKEN_LOCAL")
 
 
 
-url = jira_base_url
+url = "https://uneritx.atlassian.net/rest/api/2/user/search"
 
 auth = HTTPBasicAuth(username, apikey)
 
