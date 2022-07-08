@@ -21,7 +21,7 @@ jira_status = str(singleIssue.fields.status)
 for user in jira.group_members("administrators"):        
     info = jira.user(user)        
     print(info.name, info.emailAddress)
-
+#
 if jira_status not in ["To Do", "Done"]:
   sys.exit(0)
 else:
