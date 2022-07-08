@@ -65,6 +65,16 @@ jobs:
         script: |
           core.setFailed('JIRA Issue is not in In-Progress Status. Either the status is To-Do or Done.Please check')
     
+    - name: Find Jira user
+      id: jira_user
+      run: |
+        output=$(python jira_user.py)
+        echo "${output}}"
+        echo "::set-output name=jira_user::$output"
+      env:
+        JIRA_CLOUD_URL: "https://uneritx.atlassian.net"
+        JIRA_USER_LOCAL: ${{ secrets.JIRA_USER }}
+        JIRA_TOKEN_LOCAL: ${{ secrets.JIRA_TOKEN }}
     
 
   
