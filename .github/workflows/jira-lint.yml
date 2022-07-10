@@ -48,22 +48,22 @@ jobs:
         python -m pip install --upgrade pip
         pip install jira
     
-    - name: Check JIRA Status
-      id: jira_status_checker
-      run: |
-        output=$(python jira_status_checker.py ${{steps.jira_issue.outputs.Issue}})
-        echo "${output}}"
-        echo "::set-output name=jira_status::$output"
-      env:
-        JIRA_CLOUD_URL: "https://uneritx.atlassian.net"
-        JIRA_USER_LOCAL: ${{ secrets.JIRA_USER }}
-        JIRA_TOKEN_LOCAL: ${{ secrets.JIRA_TOKEN }}
-    - name: Validate JIRA Status
-      if: ${{steps.jira_status_checker.outputs.jira_status == 'invalid'}}
-      uses: actions/github-script@v3
-      with:
-        script: |
-          core.setFailed('JIRA Issue is not in In-Progress Status. Either the status is To-Do or Done.Please check')
+#    - name: Check JIRA Status
+#      id: jira_status_checker
+#      run: |
+#        output=$(python jira_status_checker.py ${{steps.jira_issue.outputs.Issue}})
+#        echo "${output}}"
+#        echo "::set-output name=jira_status::$output"
+#      env:
+#        JIRA_CLOUD_URL: "https://uneritx.atlassian.net"
+#        JIRA_USER_LOCAL: ${{ secrets.JIRA_USER }}
+#        JIRA_TOKEN_LOCAL: ${{ secrets.JIRA_TOKEN }}
+#    - name: Validate JIRA Status
+#      if: ${{steps.jira_status_checker.outputs.jira_status == 'invalid'}}
+#      uses: actions/github-script@v3
+#      with:
+#        script: |
+#          core.setFailed('JIRA Issue is not in In-Progress Status. Either the status is To-Do or Done.Please check')
     
     - name: Find Jira user
       id: jira_user
