@@ -6,3 +6,4 @@
 #This is related to JIRA ISSUE UTX-21 cb
 SD
 test-auto-delete
+test
