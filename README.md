@@ -7,3 +7,4 @@
 SD
 test-auto-delete
 test
+mergedBy
