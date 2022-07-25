@@ -7,3 +7,5 @@
 SD
 test-auto-delete
 test
+tst-pr-4
+test-pr-4

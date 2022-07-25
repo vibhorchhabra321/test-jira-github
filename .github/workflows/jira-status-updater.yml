@@ -6,12 +6,11 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:       
-    - name: Comment on issue
-      uses: atlassian/gajira-comment@master
-      with:
-        issue: UTX-1
-        comment: ${{ github.event.pusher.name }} pushed to repository- ${{ github.event.repository.full_name }}
-   
+#    - name: Comment on issue
+#      uses: atlassian/gajira-comment@master
+#      with:
+#        issue: UTX-1
+#        comment: ${{ github.event.pusher.name }} pushed to repository - ${{ github.event.repository.full_name }}
     - name: 'Assert Branch Naming Convention'
       uses: deepakputhraya/action-branch-name@master
       with:
