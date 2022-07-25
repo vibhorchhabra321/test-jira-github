@@ -1,0 +1,11 @@
+on:
+  pull_request:
+    types: [closed]
+  
+jobs:
+  Commit_Checker:
+    runs-on: ubuntu-latest
+    
+    steps:       
+    - name: Comment MergedBy
+      run: echo '${{ github.event.pull_request.mergedBy}}'
