@@ -12,4 +12,4 @@ jobs:
     - name: Merge Author
       if: startsWith(github.event.head_commit.message, 'Merge pull request')
       run: |
-        echo "${{ github.event.head_commit.message }}"
+        echo "${{ github.event.head_commit.author.email }}"
