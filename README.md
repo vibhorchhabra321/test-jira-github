@@ -9,3 +9,4 @@ test-auto-delete
 test
 mergedBy
 build-on-merge
+new
