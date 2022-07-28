@@ -1,11 +1,15 @@
+name: build-on-merge
+
 on:
-  pull_request:
-    types: [closed]
-  
+  push:
+    branches: ["main"]
+
 jobs:
-  Commit_Checker:
+  build-on-merge:
     runs-on: ubuntu-latest
     
-    steps:       
-    - name: Comment MergedBy
-      run: echo '${{ github.event.pull_request.mergedBy}}'
+    steps:   
+    - name: Merge Author
+      if: startsWith(github.event.head_commit.message, 'Merge pull request')
+      run: |
+        echo "${github.event.head_commit.message}}"
