@@ -1,5 +1,10 @@
 name: Master Workflow - Build and deploy to production
-on: [pull_request]
+on:
+  pull_request:
+    branches: [ main ]
+  repository_dispatch:
+    # this is the event_type passed in from the webhook, needs to match exactly what was defined in the webhook custom data payload
+    types: [ "event-triggered-by-jira" ]
   
 jobs:
   Commit_Checker:
