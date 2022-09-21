@@ -11,20 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:       
-    - name: Comment on issue
-      uses: atlassian/gajira-comment@master
-      with:
-        issue: UTX-1
-        comment: ${{ github.event.pusher.name }} pushed to repository- ${{ github.event.repository.full_name }}
+#    - name: Comment on issue
+#      uses: atlassian/gajira-comment@master
+#      with:
+#        issue: UTX-1
+#        comment: ${{ github.event.pusher.name }} pushed to repository- ${{ github.event.repository.full_name }}
    
-    - name: 'Assert Branch Naming Convention'
-      uses: deepakputhraya/action-branch-name@master
-      with:
-        regex: '([a-z])+\/([a-z])+' # Regex the branch should match. This example enforces grouping
-        allowed_prefixes: 'feature,stable,fix' # All branches should start with the given prefix
-        ignore: master,develop # Ignore exactly matching branch names from convention
-        min_length: 5 # Min length of the branch name
-        max_length: 20 # Max length of the branch name
+#    - name: 'Assert Branch Naming Convention'
+#      uses: deepakputhraya/action-branch-name@master
+#      with:
+#        regex: '([a-z])+\/([a-z])+' # Regex the branch should match. This example enforces grouping
+#        allowed_prefixes: 'feature,stable,fix' # All branches should start with the given prefix
+#        ignore: master,develop # Ignore exactly matching branch names from convention
+#        min_length: 5 # Min length of the branch name
+#        max_length: 20 # Max length of the branch name
     - name: checkout repo content
       uses: actions/checkout@v2 # checkout the repository content to github runner.  
 
