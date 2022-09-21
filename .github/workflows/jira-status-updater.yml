@@ -10,7 +10,10 @@ jobs:
   Commit_Checker:
     runs-on: ubuntu-latest
     
-    steps:       
+    steps: 
+     - name: Print Services
+       run: |
+        echo Services are ${{ github.event.client_payload.services }}
 #    - name: Comment on issue
 #      uses: atlassian/gajira-comment@master
 #      with:
