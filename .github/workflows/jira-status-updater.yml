@@ -29,8 +29,11 @@ jobs:
       uses: actions/checkout@v2 # checkout the repository content to github runner.
     
     - name: Print Services
+      id: jira_release_services
       run: |
+        output=${{ github.event.client_payload.services }}
         echo "Services are ${{ github.event.client_payload.services }}"
+        echo "${output}}"
 
     - name: setup python
       uses: actions/setup-python@v2
