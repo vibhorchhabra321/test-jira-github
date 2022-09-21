@@ -12,12 +12,18 @@ class service(dict):
  
  
 # Main Function
-svc_obj = service()
+
 main_manifest_json = service()
- 
+import os
+import warnings
+import sys
+
+
+jira_services = sys.argv[1]
 services = []
 aList = ["svc-v1-lib","svc2-v2-lib", "svc3-v1-lib"]
 for svc in aList:
+    svc_obj = service()
     service_manifest=svc.split('-v')
     service_manifest[1]="v" + service_manifest[1][0:]
     svc_obj.add("Service_Name", service_manifest[0])
