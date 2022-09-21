@@ -25,5 +25,5 @@ for svc in aList:
     services.append(svc_obj)
 main_manifest_json.add("Services",services)
 print(main_manifest_json)
-with open('main_manifest_json.json', 'w') as f:
-    json.dump(main_manifest_json, f, ensure_ascii=False, indent=4)
+#with open('main_manifest_json.json', 'w') as f:
+#    json.dump(main_manifest_json, f, ensure_ascii=False, indent=4)
