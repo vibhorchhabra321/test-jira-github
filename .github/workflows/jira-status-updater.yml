@@ -26,7 +26,11 @@ jobs:
 #        min_length: 5 # Min length of the branch name
 #        max_length: 20 # Max length of the branch name
     - name: checkout repo content
-      uses: actions/checkout@v2 # checkout the repository content to github runner.  
+      uses: actions/checkout@v2 # checkout the repository content to github runner.
+    
+    - name: Print Services
+      run: |
+        echo "Services are ${{ github.event.client_payload.services }}"
 
     - name: setup python
       uses: actions/setup-python@v2
