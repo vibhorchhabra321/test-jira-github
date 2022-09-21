@@ -30,7 +30,7 @@ jobs:
     
     - name: Print Services
       run: |
-        echo "Services are ${{ github.event.client_payload.services }}"
+        echo "Services are ${{ github.event.client_payload.env }}"
 
     - name: setup python
       uses: actions/setup-python@v2
