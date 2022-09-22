@@ -20,8 +20,9 @@ import sys
 
 
 jira_services = sys.argv[1]
+aList=jira_services.split(",")
 services = []
-aList = ["svc-v1-lib","svc2-v2-lib", "svc3-v1-lib"]
+#aList = ["svc-v1-lib","svc2-v2-lib", "svc3-v1-lib"]
 for svc in aList:
     svc_obj = service()
     service_manifest=svc.split('-v')
