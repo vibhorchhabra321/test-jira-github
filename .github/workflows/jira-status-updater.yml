@@ -48,5 +48,5 @@ jobs:
     - name: Check JIRA Status
       id: jira_create_manifest
       run: |
-        output=$(python jira_create_manifest.py ${{steps.jira_issue.outputs.Issue}})
+        output=$(python jira_create_manifest.py ${{ github.event.client_payload.services }})
         echo "${output}}"
