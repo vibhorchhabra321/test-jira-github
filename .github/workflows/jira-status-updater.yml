@@ -11,6 +11,7 @@ permissions: write-all
 jobs:
   Commit_Checker:
     runs-on: ubuntu-latest
+    permissions: write-all
     
     steps:
 #    - name: Comment on issue
