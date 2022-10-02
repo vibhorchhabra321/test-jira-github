@@ -34,6 +34,7 @@ jobs:
         output=${{ github.event.client_payload.services }}
         echo "Services are ${{ github.event.client_payload.services }}"
         echo "${output}}"
+        
 
     - name: setup python
       uses: actions/setup-python@v2
@@ -50,3 +51,28 @@ jobs:
       run: |
         output=$(python jira_create_manifest.py ${{ github.event.client_payload.services }})
         echo "${output}}"
+        echo "::set-output name=manifest_json::$output"
+        
+    - name: Checkout Manifest Repo
+      uses: actions/checkout@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        repository: 'vibhorchhabra321/service-manifest'
+    - name: create-Manifest-File
+      id: create-json
+      uses: jsdaniell/create-json@1.1.2
+      with:
+        name: "manifest.json"
+        json: ${{ steps.jira_create_manifest.outputs.manifest_json }}
+        dir: "manifest-data/"
+    - name: Commit files
+      run: |
+        git config --local user.email "vibhor.rc@gmail.com"
+        git config --local user.name "github-actions[bot]"
+        git commit -m "Add changes" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
+    
